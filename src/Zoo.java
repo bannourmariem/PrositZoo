@@ -1,10 +1,11 @@
 public class Zoo {
 
-    Animal[] animals;
-    String name, city;
-    final int nbrCages = 25;  // on le rend constante 
+    private Animal[] animals;
+    private String city;
+    private String name;
+    private final int nbrCages = 25;  // on le rend constant
+    private int nbrAnimals;
 
-    int nbrAnimals;
 
     public Zoo() {
     }
@@ -16,11 +17,41 @@ public class Zoo {
        // this.nbrCages = nbrCages;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (!name.isBlank()) {
+            this.name = name;
+        } else {
+            System.out.println("Nom du Zoo Inconnu");
+        }
+    }
+
+
+    public int getNbrCages() {
+        return nbrCages;
+    }
+
+    public int getNbrAnimals() {
+        return nbrAnimals;
+    }
+
+
     void displayZoo() {
         System.out.println("Name: " + name + ", City: " + city + ", N° Cages/Animals: " + nbrCages);
     }
 
-    boolean addAnimal(Animal animal) {
+  /*  boolean addAnimal(Animal animal) {
         if (searchAnimal(animal) != -1)
             return false;
         if (nbrAnimals == nbrCages)
@@ -28,7 +59,23 @@ public class Zoo {
         animals[nbrAnimals] = animal;
         nbrAnimals++;
         return true;
-    }
+    }  */
+
+  public boolean addAnimal(Animal animal) {
+      if (searchAnimal(animal) != -1) {
+          return false; // L'animal est déjà dans le zoo
+      }
+
+      if (isZooFull(this)) {
+          return false; // Le zoo est plein, impossible d'ajouter plus d'animaux
+      }
+
+      animals[nbrAnimals] = animal;
+      nbrAnimals++;
+      return true;
+  }
+
+
 
     boolean removeAnimal(Animal animal) {
         int indexAnimal = searchAnimal(animal);
@@ -52,7 +99,7 @@ public class Zoo {
     int searchAnimal(Animal animal) {
         int index = -1;
         for (int i = 0; i < nbrAnimals; i++) {
-            if (animal.name == animals[i].name)
+            if (animal.getName() == animals[i].getName())
                 return i;
         }
         return index;

@@ -3,16 +3,16 @@ public class ZooManagement {
     public static void main(String[] args) {
         //PROSIT 2
         Animal lion = new Animal();
-        lion.name = "Simba";
-        lion.age = 8;
-        lion.family = "Cats";
-        lion.isMammal = true;
+        lion.setName("Simba");
+        lion.setAge(8);
+        lion.setFamily("Cats");
+        lion.setMammal(true);
 
         Zoo myZoo = new Zoo();
-        myZoo.name = "Wildlife Park";
-        myZoo.city = "Ariana";
+        myZoo.setName("Wildlife Park");
+        myZoo.setCity("Ariana");
       //  myZoo.nbrCages = 25;
-        myZoo.animals = new Animal[25];
+        Zoo zoo1 = new Zoo () ;
 
 
 
@@ -35,7 +35,8 @@ public class ZooManagement {
         myZoo.displayAnimals();
 
 
-    //    System.out.println(Zoo.comparerZoo(myZoo.notmyZoo));
+   System.out.println(Zoo.comparerZoo(myZoo,zoo1));
+        System.out.println(Zoo.isZooFull(myZoo));
 
     }
 
